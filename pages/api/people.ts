@@ -16,7 +16,14 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const response = await fetch(process.env.API_URL! + '/people')
+  const { page, limit } = req.query
+
+  const response =
+    page && limit
+      ? await fetch(
+          process.env.API_URL! + `/people?page=${page}&limit=${limit}`
+        )
+      : await fetch(process.env.API_URL! + '/people')
   const r = (await response.json()) as CharacterResponse
 
   if (r.message !== 'ok') {
