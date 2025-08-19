@@ -1,6 +1,7 @@
 import type { InferGetServerSidePropsType } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import Card from '@/components/Card'
+import Pagination from '@/components/Pagination'
 import { CharacterResponse } from './api/people'
 
 const geistSans = Geist({
@@ -27,10 +28,15 @@ export default function Home({
     <div
       className={`${geistSans.className} ${geistMono.className} font-sans grid`}
     >
-      <main className='grid grid-cols-1 md:grid-cols-4 gap-4'>
-        {data.results.map((result) => (
-          <Card key={result.uid} {...result} />
-        ))}
+      <main className='flex flex-col'>
+        <div className='grid grid-cols-1 md:grid-cols-4 gap-4'>
+          {data.results.map((result) => (
+            <Card key={result.uid} {...result} />
+          ))}
+        </div>
+        <div className='pagination'>
+          <Pagination />
+        </div>
       </main>
     </div>
   )
