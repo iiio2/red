@@ -37,10 +37,23 @@ export default async function handler(
     'eye_color',
   ]
 
+  const f = [] as string[]
+
+  for (const film of r.result.properties.films) {
+    const r = await fetch(film)
+    const re = await r.json()
+    f.push(re.result.properties.title)
+  }
+
   res.status(200).json({
     description: r.result.description,
     properties: keys.reduce((obj, key) => {
-      if (r.result.properties && r.result.properties.hasOwnProperty(key)) {
+      if (key === 'films') {
+        obj[key] = f
+      } else if (
+        r.result.properties &&
+        r.result.properties.hasOwnProperty(key)
+      ) {
         obj[key] = (r.result.properties as Record<string, any>)[key]
       }
       return obj
