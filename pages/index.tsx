@@ -2,6 +2,7 @@ import type {
   GetServerSidePropsContext,
   InferGetServerSidePropsType,
 } from 'next'
+import Head from 'next/head'
 import { useState } from 'react'
 import Card from '@/components/Card'
 import Pagination from '@/components/Pagination'
@@ -38,16 +39,22 @@ export default function Home({
   }
 
   return (
-    <main className='flex flex-col'>
-      <SearchBox data={data} onSearchResults={handleSearchResults} />
-      <div className='grid grid-cols-1 md:grid-cols-4 gap-4'>
-        {characters.map((result) => (
-          <Card key={result.uid} {...result} />
-        ))}
-      </div>
-      <div className='pagination mt-5'>
-        <Pagination data={data} currentPage={currentPage} limit={limit} />
-      </div>
-    </main>
+    <>
+      <Head>
+        <title>Home - The Star Wars Characters</title>
+      </Head>
+
+      <main className='flex flex-col'>
+        <SearchBox data={data} onSearchResults={handleSearchResults} />
+        <div className='grid grid-cols-1 md:grid-cols-4 gap-4'>
+          {characters.map((result) => (
+            <Card key={result.uid} {...result} />
+          ))}
+        </div>
+        <div className='pagination mt-5'>
+          <Pagination data={data} currentPage={currentPage} limit={limit} />
+        </div>
+      </main>
+    </>
   )
 }
