@@ -23,6 +23,12 @@ export default async function handler(
     throw new Error('failed to fetch data')
   }
 
+  // if (r.result.length === 0) {
+  //   res.status(200).json({
+  //     message: 'no data found',
+  //   })
+  // }
+
   res.status(200).json({
     results: r.result.map(({ uid, properties }) => ({
       name: properties.name,
