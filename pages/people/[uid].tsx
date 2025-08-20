@@ -48,6 +48,21 @@ export default function Person({
           <h1 className='mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl dark:text-white'>
             {data.properties.name}
           </h1>
+
+          <div className='flex flex-row gap-2 mt-1'>
+            <span className='inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10 dark:bg-gray-400/10 dark:text-gray-400 dark:ring-gray-400/20'>
+              {data.properties.skin_color}
+            </span>
+
+            <span className='inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20 dark:bg-green-400/10 dark:text-green-400 dark:ring-green-500/20'>
+              {data.properties.eye_color}
+            </span>
+
+            <span className='inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-inset ring-pink-700/10 dark:bg-pink-400/10 dark:text-pink-400 dark:ring-pink-400/20'>
+              {data.properties.hair_color}
+            </span>
+          </div>
+
           <p className='mt-6 text-xl/8 text-gray-700 dark:text-gray-300'>
             {data.description}
           </p>

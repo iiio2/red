@@ -2,14 +2,16 @@ import type {
   GetServerSidePropsContext,
   InferGetServerSidePropsType,
 } from 'next'
+import { useState } from 'react'
 import Card from '@/components/Card'
 import Pagination from '@/components/Pagination'
 import { CharacterResponse } from './api/people'
+import SearchBox from '@/components/Search'
 
 export const getServerSideProps = async (
   context: GetServerSidePropsContext
 ) => {
-  let { page = 1, limit = 10 } = context.query
+  const { page = 1, limit = 10 } = context.query
 
   const response = await fetch(
     process.env.NEXT_PUBLIC_BASE_URL + `/people?page=${page}&limit=${limit}`
@@ -30,10 +32,16 @@ export default function Home({
   currentPage,
   limit,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
+  const [characters, setCharacters] = useState(data.results)
+  const handleSearchResults = (results: { name: string; uid: string }[]) => {
+    setCharacters(results)
+  }
+
   return (
     <main className='flex flex-col'>
+      <SearchBox data={data} onSearchResults={handleSearchResults} />
       <div className='grid grid-cols-1 md:grid-cols-4 gap-4'>
-        {data.results.map((result) => (
+        {characters.map((result) => (
           <Card key={result.uid} {...result} />
         ))}
       </div>
