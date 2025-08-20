@@ -18,7 +18,7 @@ pnpm dev
 | Backend API   | Next.js API Routes         | BFF layer to control and optimize data |
 | Data Fetching | Native fetch               | Server-side HTTP calls to SWAPI        |
 | Styling       | CSS Modules / Tailwind CSS | Component styling                      |
-|               |
+| Testing       | Vitest                     | Unit and Integration testing           |
 
 ## QA/Testing Plan
 
